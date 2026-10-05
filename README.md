@@ -9,10 +9,15 @@ The activity uses a structured Read-Process-Write architecture to organize the p
 ## Project Features
 
 * **Safety Switch:** Uses a push button connected to GPIO 4 with an internal pull-up resistor (`INPUT_PULLUP`) to enable or disable the workstation light.
+
 * **Brightness Control:** Uses a potentiometer connected to GPIO 34 to adjust the brightness of the LED.
+
 * **PWM Control:** Uses PWM on GPIO 18 with a frequency of 5 kHz and 8-bit resolution to control LED brightness.
+
 * **Status Indicator:** Uses an LED connected to GPIO 2 to indicate whether the workstation light is enabled.
+
 * **Read-Process-Write Architecture:** Uses separate functions (`readInputs()`, `processInputs()`, and `updateOutputs()`) to organize the program.
+
 * **Serial Monitor Output:** Displays the system status, raw potentiometer reading, and applied PWM duty cycle.
 
 ## Hardware Components
@@ -28,17 +33,17 @@ The activity uses a structured Read-Process-Write architecture to organize the p
 
 ## Pin Wiring Connections
 
-| **Component** | **Pin**          | **Connection**                       |
-| ------------- | ---------------- | ------------------------------------ |
-| Push Button   | Terminal 1       | GPIO 4                               |
-| Push Button   | Terminal 2       | GND                                  |
-| Potentiometer | Outer Terminal 1 | 3V3                                  |
-| Potentiometer | Center Terminal  | GPIO 34                              |
-| Potentiometer | Outer Terminal 2 | GND                                  |
-| Status LED    | Anode (+)        | GPIO 2 through a 220Ω–330Ω resistor  |
-| Status LED    | Cathode (-)      | GND                                  |
-| PWM LED       | Anode (+)        | GPIO 18 through a 220Ω–330Ω resistor |
-| PWM LED       | Cathode (-)      | GND                                  |
+| **Component** | **Pin** | **Connection** |
+|---|---|---|
+| Push Button | Terminal 1 | GPIO 4 |
+| Push Button | Terminal 2 | GND |
+| Potentiometer | Outer Terminal 1 | 3V3 |
+| Potentiometer | Center Terminal | GPIO 34 |
+| Potentiometer | Outer Terminal 2 | GND |
+| Status LED | Anode (+) | GPIO 2 through a 220Ω–330Ω resistor |
+| Status LED | Cathode (-) | GND |
+| PWM LED | Anode (+) | GPIO 18 through a 220Ω–330Ω resistor |
+| PWM LED | Cathode (-) | GND |
 
 **Note:** Connect the potentiometer to 3V3 instead of 5V or VIN to avoid damaging the ESP32 analog input.
 
@@ -48,12 +53,11 @@ The activity uses a structured Read-Process-Write architecture to organize the p
 
 <img width="803" height="498" alt="image" src="https://github.com/user-attachments/assets/8220e18e-7e06-4b41-bc07-fd842b01ae87" />
 
-
 ## Working
 
 **Disclaimer:** The image below is intended to show the actual working condition of the project. Replace the placeholder with your own photo showing the completed activity.
 
-[ Working Image ](images/working-image.png)
+[Working Image](images/working-image.png)
 
 ## Source Code
 
@@ -118,8 +122,10 @@ void loop() {
 
     Serial.print("Enabled: ");
     Serial.print(isEnabled ? "YES" : "NO");
+
     Serial.print(" | ADC: ");
     Serial.print(rawPotValue);
+
     Serial.print(" | Applied Duty: ");
     Serial.println(appliedDuty);
 
@@ -129,12 +135,12 @@ void loop() {
 
 ## Observation Summary
 
-| **Button State**                         | **Input Logic** | **Status LED (GPIO 2)** | **PWM LED (GPIO 18)**     |
-| ---------------------------------------- | --------------- | ----------------------- | ------------------------- |
-| Released                                 | HIGH            | OFF                     | OFF                       |
-| Pressed                                  | LOW             | ON                      | Depends on potentiometer  |
-| Pressed with minimum potentiometer value | LOW             | ON                      | OFF or minimum brightness |
-| Pressed with maximum potentiometer value | LOW             | ON                      | Maximum brightness        |
+| **Button State** | **Input Logic** | **Status LED (GPIO 2)** | **PWM LED (GPIO 18)** |
+|---|---|---|---|
+| Released | HIGH | OFF | OFF |
+| Pressed | LOW | ON | Depends on potentiometer |
+| Pressed with minimum potentiometer value | LOW | ON | OFF or minimum brightness |
+| Pressed with maximum potentiometer value | LOW | ON | Maximum brightness |
 
 ## Serial Monitor Output
 
@@ -184,3 +190,7 @@ By applying the Read-Process-Write architecture, the program becomes more organi
 ## Disclaimer
 
 This README file is intended for educational and documentation purposes. The circuit and working images should represent the actual project whenever possible. Any sample images or placeholders should be replaced with the actual results of the activity.
+
+## Documentation Video
+
+[Watch the Documentation Video](./documentation.mp4)
